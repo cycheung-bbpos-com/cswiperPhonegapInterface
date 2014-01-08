@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+           id="com.bbpos.cswiperphonegap"
+      version="0.1.0">
+    <name>CSwiperPhonegapInterface</name>
+    <description>CSwiper Plugin</description>
+    <license>MIT</license>
+    <keywords>phonegap,cswiper</keywords>    
+    <js-module src="www/js/lib/cswiper.plugin.js" name="CSwiper">
+        <clobbers target="window.plugins.cswiper" />
+    </js-module> 
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="CSwiper">
+                <param name="android-package" value="com.bbpos.plugin.cswiper.CSwiper"/>
+            </feature>
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/*">            
+            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    		<uses-permission android:name="android.permission.RECORD_AUDIO" />
+        </config-file>
+ 
+        <source-file src="src/android/CSwiper.java" target-dir="src/com/bbpos/plugin/cswiper" />      
+     </platform>
+</plugin>

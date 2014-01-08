@@ -26,19 +26,14 @@ CSwiperPlugin.prototype = {
 		DECODE_TRACK3_ERROR : "DECODE_TRACK3_ERROR",
 		DECODE_UNKNOWN_ERROR : "DECODE_UNKNOWN_ERROR",		
 	},	
-	PinKeyLocation : {
-		LOCATION_0 : "LOCATION_0",
-		LOCATION_1 : "LOCATION_1",
-		LOCATION_2 : "LOCATION_2",
-		LOCATION_3 : "LOCATION_3",
-		LOCATION_4 : "LOCATION_4",
-		LOCATION_5 : "LOCATION_5",
-		LOCATION_6 : "LOCATION_6",
-		LOCATION_7 : "LOCATION_7",
-		LOCATION_8 : "LOCATION_8",
-		LOCATION_9 : "LOCATION_9",
-		LOCATION_C : "LOCATION_C",
-		LOCATION_E : "LOCATION_E",
+	PinKey : {
+		KEY_PIN : "KEY_PIN",
+		KEY_BACK : "KEY_BACK",
+		KEY_CANCEL : "KEY_CANCEL",
+		KEY_CLEAR : "KEY_CLEAR",
+		KEY_ENTER : "KEY_ENTER",
+		KEY_ENTER_WITHOUT_PIN : "KEY_ENTER_WITHOUT_PIN",
+		KEY_UNKNOWN : "KEY_UNKNOWN",
 	},
 	
 	_EPBDetected : {},
@@ -83,10 +78,6 @@ CSwiperPlugin.prototype = {
 	startCSwiper : function()
 	{
 		cordova.exec(null, null, 'CSwiper', 'startCSwiper', []);
-	},
-	isDeviceHere : function(success, fail)
-	{
-		cordova.exec(success, fail, 'CSwiper', 'isDeviceHere', []);
 	},
 	isDevicePresent : function(success, fail)
 	{
@@ -166,6 +157,14 @@ CSwiperPlugin.prototype = {
 	{
 		_DevicePlugged();
 	},
+	setDeviceUnpluggedHandler : function(cb)
+    {
+        _DeviceUnplugged = cb;
+    },
+    onDeviceUnplugged : function()
+    {
+        _DeviceUnplugged();
+    },	
 	setErrorHandler : function(cb)
 	{
 		_Error = cb;
@@ -186,7 +185,7 @@ CSwiperPlugin.prototype = {
 	{
 		_NoDeviceDetected = cb;
 	},
-	onNoDeviceDetectedHandler : function()
+	onNoDeviceDetected : function()
 	{
 		_NoDeviceDetected();
 	},

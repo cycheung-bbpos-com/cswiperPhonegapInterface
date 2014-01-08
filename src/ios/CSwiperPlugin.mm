@@ -9,7 +9,7 @@
 #import "CSwiperPlugin.h"
 #import <Foundation/NSJSONSerialization.h>
 
-@implementation CDVCSwiper
+@implementation CSwiperPlugin
 
 @synthesize controller;
 @synthesize doLogging;

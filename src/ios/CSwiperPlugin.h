@@ -9,7 +9,7 @@
 #import <Cordova/CDV.h>
 #import "CSwiperController.h"
 
-@interface CDVCSwiper : CDVPlugin<CSwiperControllerDelegate>
+@interface CSwiperPlugin : CDVPlugin<CSwiperControllerDelegate>
 {
 	CSwiperController *controller;
 	BOOL doLogging;

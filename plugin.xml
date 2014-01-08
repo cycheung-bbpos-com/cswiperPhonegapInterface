@@ -34,7 +34,7 @@
         </config-file>
            
         <header-file src="src/ios/CSwiperController.h" />
-        <source-file src="src/ios/CSwiperPlugin.h" />
+        <header-file src="src/ios/CSwiperPlugin.h" />
         <source-file src="src/ios/CSwiperPlugin.mm" />
         
         <framework src="CoreAudio.framework" />

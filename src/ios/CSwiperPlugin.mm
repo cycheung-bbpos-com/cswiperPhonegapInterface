@@ -83,7 +83,7 @@ NSString* const StringFromDecodeResult[] = {
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (void)getApiVersion: (CDVInvokedUrlCommand*)command
+- (void)getAPIVersion: (CDVInvokedUrlCommand*)command
 {
 	[self Log: @"getApiVersion"];
 	CDVPluginResult* pluginResult = nil;

@@ -19,7 +19,7 @@
 @property (nonatomic, assign) BOOL doLogging;
 
 - (void)isDevicePresent: (CDVInvokedUrlCommand*)command;
-- (void)getApiVersion: (CDVInvokedUrlCommand*)command;
+- (void)getAPIVersion: (CDVInvokedUrlCommand*)command;
 - (void)startCSwiper: (CDVInvokedUrlCommand*)command;
 - (void)getCSwiperKsn: (CDVInvokedUrlCommand*)command;
 - (void)getFirmwareVersion: (CDVInvokedUrlCommand*)command; //Need firmware version 1.2.14 or above

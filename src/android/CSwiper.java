@@ -83,7 +83,7 @@ private CSwiperController cswiperController;
 	}
 	
 	@Override
-	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+	public boolean execute(final String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
 
 		try	{
 			//Methods that need parameter
@@ -122,19 +122,21 @@ private CSwiperController cswiperController;
 				String input1 = args.getString(0);
 				String input2 = args.getString(1);
 				cswiperController.startCSwiper(input1, input2);
-			}
-					
+			}					
+			
 			try {
+				Log.d(jsEquvalent, "Excecuting " + action);
 				Method method = cswiperController.getClass().getMethod(action);				
-				Object ret = method.invoke(cswiperController);
-				if (ret != null) {
+				final Object ret = method.invoke(cswiperController);
+				if (ret != null && ret.toString() != "null") {
+					Log.d(jsEquvalent, "return " + ret.toString());
 					callbackContext.success(ret.toString());
 				}
-				return true;				
 			} catch (Exception e) {
 				Log.d(jsEquvalent, "No method " + action);
-				return false;
 			}			
+			return true;
+			
 		} catch (Exception e) {
 			Log.d(jsEquvalent, "Fail to execute method " + action);
 			return false;
@@ -162,7 +164,7 @@ private CSwiperController cswiperController;
 	@Override
 	public void onPinEntryDetected(PINKey arg0) {
 		// TODO Auto-generated method stub
-		this.invokeJsFunc("onPinEntryDetected", arg0.name());
+		this.invokeJsFunc("onPinEntryDetected", String.format("'%s'", arg0.name()));
 	}
 
 	@Override
@@ -186,7 +188,7 @@ private CSwiperController cswiperController;
 	@Override
 	public void onDecodeError(DecodeResult arg0) {
 		// TODO Auto-generated method stub
-		this.invokeJsFunc("onDecodeError", arg0.name());
+		this.invokeJsFunc("onDecodeError", String.format("'%s'", arg0.name()));
 	}
 
 	@Override

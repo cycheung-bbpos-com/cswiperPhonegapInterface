@@ -41,7 +41,7 @@ NSString* const StringFromDecodeResult[] = {
 
 - (CDVPlugin*)initWithWebView:(UIWebView *)theWebView
 {
-	self = (CDVCSwiper*)[super initWithWebView:theWebView];
+	self = (CSwiperPlugin*)[super initWithWebView:theWebView];
 	if (self)
 	{
 		self.doLogging = true;

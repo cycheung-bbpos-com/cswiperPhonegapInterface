@@ -24,5 +24,21 @@
         </config-file>
  
         <source-file src="src/android/CSwiper.java" target-dir="src/com/bbpos/plugin/cswiper" />      
-     </platform>
+    </platform>
+    <!-- ios --> 
+    <platform name="ios">    
+        <config-file target="config.xml" parent="/*">
+            <feature name="CSwiper">
+                <param name="ios-package" value="CSwiperPlugin" /> 
+            </feature>
+        </config-file>
+           
+        <header-file src="src/ios/CSwiperController.h" />
+        <source-file src="src/ios/CSwiperPlugin.h" />
+        <source-file src="src/ios/CSwiperPlugin.mm" />
+        
+        <framework src="CoreAudio.framework" />
+        <framework src="AudioToolbox.framework" />
+        <framework src="MediaPlayer.framework" />
+    </platform>
 </plugin>

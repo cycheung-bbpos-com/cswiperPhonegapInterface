@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.nfc.tech.IsoDep;
 import android.util.Log;
 
 import com.bbpos.cswiper.CSwiperController;
@@ -98,31 +99,43 @@ private CSwiperController cswiperController;
 				Log.d(jsEquvalent, action + " hashMap: " + input);
 				HashMap<Integer, String[]> hashMap = parseAPDU(input);
 				cswiperController.batchExchangeAPDU(hashMap);
+				return true;
 			} else if (action.equals("encryptData")) {
 				String input = args.getString(0);
 				cswiperController.encryptData(input);
+				return true;
 			} else if (action.equals("exchangeAPDU")) {
 				String input = args.getString(0);
 				cswiperController.exchangeAPDU(input);
+				return true;
 			} else if (action.equals("getEPBFromViPOS")) {
 				String input1 = args.getString(0);
 				String input2 = args.getString(1);
 				cswiperController.getEPBFromViPOS(input1, input2);
+				return true;
 			} else if (action.equals("setDetectDeviceChange")) {
 				boolean input = args.getBoolean(0);
 				cswiperController.setDetectDeviceChange(input);
+				return true;
 			} else if (action.equals("setKey")) {
 				int input = args.getInt(0);
 				cswiperController.setKey(input);
+				return true;
 			} else if (action.equals("setMasterKey")) {
 				String input1 = args.getString(0);
 				int input2 = args.getInt(1);
 				cswiperController.setMasterKey(input1, input2);
+				return true;
 			} else if (action.equals("cswiperController")) {
 				String input1 = args.getString(0);
 				String input2 = args.getString(1);
 				cswiperController.startCSwiper(input1, input2);
-			}					
+				return true;
+			} else if (action.equals("getFirmwareVersion")) {
+				String fwVersion = cswiperController.getFirmwareVersion();
+				this.invokeJsFunc("onGetFirmwareVersionCompleted", String.format("'%s'", fwVersion));
+				return true;
+			}
 			
 			try {
 				Log.d(jsEquvalent, "Excecuting " + action);
@@ -133,10 +146,15 @@ private CSwiperController cswiperController;
 					callbackContext.success(ret.toString());
 				}
 			} catch (Exception e) {
+				Throwable cause = e.getCause();
+				if (cause != null && cause instanceof IllegalStateException) {
+					this.invokeJsFunc("onIllegalStateError");
+					return true;
+				}
+				e.printStackTrace();
 				Log.d(jsEquvalent, "No method " + action);
-			}			
+			} 	
 			return true;
-			
 		} catch (Exception e) {
 			Log.d(jsEquvalent, "Fail to execute method " + action);
 			return false;
@@ -161,10 +179,29 @@ private CSwiperController cswiperController;
 		this.invokeJsFunc("onEPBDetected");
 	}
 
+	public static String MapiOSName(PINKey key) {
+		switch (key) {
+			case KEY_PIN:
+				return "KEY_PIN";
+			case KEY_BACK:
+				return "KEY_BACK";
+			case KEY_CANCEL:
+				return "KEY_CANCEL";
+			case KEY_CLEAR:
+				return "KEY_CLEAR";
+			case KEY_ENTER:
+				return "KEY_ENTER";
+			case KEY_ENTER_WITHOUT_PIN:
+				return "KEY_ENTER_WITHOUT_PIN";
+			default:
+				return "KEY_UNKNOWN";
+		}
+	}
+	
 	@Override
 	public void onPinEntryDetected(PINKey arg0) {
 		// TODO Auto-generated method stub
-		this.invokeJsFunc("onPinEntryDetected", String.format("'%s'", arg0.name()));
+		this.invokeJsFunc("onPinEntryDetected", String.format("'%s'", MapiOSName(arg0)));
 	}
 
 	@Override
@@ -184,11 +221,32 @@ private CSwiperController cswiperController;
 		// TODO Auto-generated method stub		
 		this.invokeJsFunc("onDecodeCompleted", new JSONObject(arg0).toString());
 	}
+	
+	public static String MapiOSName(DecodeResult result) {
+		switch (result) {
+			case DECODE_SWIPE_FAIL:
+				return "CSwiperControllerDecodeResultSwipeFail";
+			case DECODE_CRC_ERROR:
+				return "CSwiperControllerDecodeResultCRCError";
+			case DECODE_COMM_ERROR:
+				return "CSwiperControllerDecodeResultCommError";
+			case DECODE_TRACK1_ERROR:
+				return "CSwiperControllerDecodeResultTrack1Error";
+			case DECODE_TRACK2_ERROR:
+				return "CSwiperControllerDecodeResultTrack2Error";
+			case DECODE_TRACK3_ERROR:
+				return "CSwiperControllerDecodeResultTrack3Error";
+			case DECODE_SUCCESS:
+				return "CSwiperControllerDecodeResultSuccess";
+			default:
+				return "CSwiperControllerDecodeResultUnknownError";
+		}
+	}
 
 	@Override
 	public void onDecodeError(DecodeResult arg0) {
 		// TODO Auto-generated method stub
-		this.invokeJsFunc("onDecodeError", String.format("'%s'", arg0.name()));
+		this.invokeJsFunc("onDecodeError", String.format("'%s'", MapiOSName(arg0)));
 	}
 
 	@Override

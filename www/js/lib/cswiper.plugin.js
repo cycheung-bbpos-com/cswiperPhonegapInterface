@@ -17,14 +17,14 @@ CSwiperPlugin.prototype = {
   	 ERROR_FAIL_TO_ENCRYPT_DATA : -11,
 	
 	DecodeResult : {
-		DECODE_COMM_ERROR : "DECODE_COMM_ERROR",
-		DECODE_CRC_ERROR : "DECODE_CRC_ERROR",
-		DECODE_SUCCESS : "DECODE_SUCCESS",
-		DECODE_SWIPE_FAIL : "DECODE_SWIPE_FAIL",
-		DECODE_TRACK1_ERROR : "DECODE_TRACK1_ERROR",
-		DECODE_TRACK2_ERROR : "DECODE_TRACK2_ERROR",
-		DECODE_TRACK3_ERROR : "DECODE_TRACK3_ERROR",
-		DECODE_UNKNOWN_ERROR : "DECODE_UNKNOWN_ERROR",		
+		DECODE_COMM_ERROR : "CSwiperControllerDecodeResultCommError",
+		DECODE_CRC_ERROR : "CSwiperControllerDecodeResultCRCError",
+		DECODE_SUCCESS : "CSwiperControllerDecodeResultSuccess",
+		DECODE_SWIPE_FAIL : "CSwiperControllerDecodeResultSwipeFail",
+		DECODE_TRACK1_ERROR : "CSwiperControllerDecodeResultTrack1Error",
+		DECODE_TRACK2_ERROR : "CSwiperControllerDecodeResultTrack2Error",
+		DECODE_TRACK3_ERROR : "CSwiperControllerDecodeResultTrack3Error",
+		DECODE_UNKNOWN_ERROR : "CSwiperControllerDecodeResultUnknownError",		
 	},	
 	PinKey : {
 		KEY_PIN : "KEY_PIN",

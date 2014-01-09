@@ -51,6 +51,8 @@ CSwiperPlugin.prototype = {
 	_Timeout : {},
 	_WaitingForDevice : {},
 	_GetKsnCompleted : {},
+	_GetFirmwareVersionCompleted : {},
+	_IllegalStateError : {},
 	
 	throwAllHandlers : function()
 	{
@@ -69,6 +71,8 @@ CSwiperPlugin.prototype = {
 		_Timeout = {};
 		_WaitingForDevice = {};
 		_GetKsnCompleted = {};
+		_GetFirmwareVersionCompleted = {};
+		_IllegalStateError = {};
 	},
 	
 	getCSwiperKsn : function()
@@ -93,7 +97,7 @@ CSwiperPlugin.prototype = {
 	},
 	
 	// 14 event handlers
-	setEPBDetectedHandler : function(cb)
+	setOnEPBDetectedHandler : function(cb)
 	{
 		_EPBDetected = cb;
 	},
@@ -101,7 +105,7 @@ CSwiperPlugin.prototype = {
 	{
 		_EPBDetected();
 	},
-	setPinEntryDetectedHandler : function(cb)
+	setOnPinEntryDetectedHandler : function(cb)
 	{
 		_PinEntryDetected = cb;
 	},
@@ -109,7 +113,7 @@ CSwiperPlugin.prototype = {
 	{
 		_PinEntryDetected(pinKey);
 	},
-	setWaitingForPinEntryHandler : function(cb)
+	setOnWaitingForPinEntryHandler : function(cb)
 	{
 		_WaitingForPinEntry = cb;
 	},
@@ -117,7 +121,7 @@ CSwiperPlugin.prototype = {
 	{
 		_WaitingForPinEntry();
 	},
-	setCardSwipeDetectedHandler : function(cb)
+	setOnCardSwipeDetectedHandler : function(cb)
 	{
 		_CardSwipeDetected = cb;
 	},
@@ -125,7 +129,7 @@ CSwiperPlugin.prototype = {
 	{
 		_CardSwipeDetected();
 	},
-	setDecodeCompletedHandler : function(cb)
+	setOnDecodeCompletedHandler : function(cb)
 	{
 		_DecodeCompleted = cb;
 	},
@@ -133,7 +137,7 @@ CSwiperPlugin.prototype = {
 	{
 		_DecodeCompleted(decodeData);
 	},
-	setDecodeErrorHandler : function(cb)
+	setOnDecodeErrorHandler : function(cb)
 	{
 		_DecodeError = cb;
 	},
@@ -141,7 +145,7 @@ CSwiperPlugin.prototype = {
 	{
 		_DecodeError(decodeResult);
 	},
-	setWaitingForCardSwipeHandler : function(cb)
+	setOnWaitingForCardSwipeHandler : function(cb)
 	{
 		_WaitingForCardSwipe = cb;
 	},
@@ -149,7 +153,7 @@ CSwiperPlugin.prototype = {
 	{
 		_WaitingForCardSwipe();
 	},
-	setDevicePluggedHandler : function(cb)
+	setOnDevicePluggedHandler : function(cb)
 	{
 		_DevicePlugged = cb;
 	},
@@ -157,7 +161,7 @@ CSwiperPlugin.prototype = {
 	{
 		_DevicePlugged();
 	},
-	setDeviceUnpluggedHandler : function(cb)
+	setOnDeviceUnpluggedHandler : function(cb)
     {
         _DeviceUnplugged = cb;
     },
@@ -165,7 +169,7 @@ CSwiperPlugin.prototype = {
     {
         _DeviceUnplugged();
     },	
-	setErrorHandler : function(cb)
+	setOnErrorHandler : function(cb)
 	{
 		_Error = cb;
 	},
@@ -173,7 +177,7 @@ CSwiperPlugin.prototype = {
 	{
 		_Error(errorType, message);
 	},
-	setInterruptedHandler : function(cb)
+	setOnInterruptedHandler : function(cb)
 	{
 		_Interrupted = cb;
 	},
@@ -181,7 +185,7 @@ CSwiperPlugin.prototype = {
 	{
 		_Interrupted();
 	},
-	setNoDeviceDetectedHandler : function(cb)
+	setOnNoDeviceDetectedHandler : function(cb)
 	{
 		_NoDeviceDetected = cb;
 	},
@@ -189,7 +193,7 @@ CSwiperPlugin.prototype = {
 	{
 		_NoDeviceDetected();
 	},
-	setTimeoutHandler : function(cb)
+	setOnTimeoutHandler : function(cb)
 	{
 		_Timeout = cb;
 	},
@@ -197,7 +201,7 @@ CSwiperPlugin.prototype = {
 	{
 		_Timeout();
 	},
-	setWaitingForDeviceHandler : function(cb)
+	setOnWaitingForDeviceHandler : function(cb)
 	{
 		_WaitingForDevice = cb;
 	},
@@ -205,14 +209,30 @@ CSwiperPlugin.prototype = {
 	{
 		_WaitingForDevice();
 	},
-	setGetKsnCompletedHandler : function(cb)
+	setOnGetKsnCompletedHandler : function(cb)
 	{
 		_GetKsnCompleted = cb;
 	},
 	onGetKsnCompleted : function(ksn)
 	{
 		_GetKsnCompleted(ksn);
-	},	
+	},
+	setOnGetFirmwareVersionCompletedHandler : function(cb)
+	{
+		_GetFirmwareVersionCompleted = cb;
+	},
+	onGetFirmwareVersionCompleted : function(fwVersion)
+	{
+		_GetFirmwareVersionCompleted(fwVersion);
+	},
+	setOnIllegalStateErrorHandler : function(cb)
+	{
+		_IllegalStateError = cb;
+	},
+	onIllegalStateError : function()
+	{
+		_IllegalStateError();
+	},
 };
 
 if (!window.plugins) {

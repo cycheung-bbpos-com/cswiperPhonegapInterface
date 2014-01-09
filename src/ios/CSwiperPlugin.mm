@@ -174,7 +174,7 @@ NSString* const StringFromDecodeResult[] = {
 - (void)onDecodeError:(CSwiperControllerDecodeResult)decodeResult
 {
 	[self Log:@"onDecodeError"];
-	[self writeJavascript:[NSString stringWithFormat:@"window.plugins.cswiper.onDecodeError(%@);", StringFromDecodeResult[ decodeResult]]];
+	[self writeJavascript:[NSString stringWithFormat:@"window.plugins.cswiper.onDecodeError('%@');", StringFromDecodeResult[ decodeResult]]];
 }
 
 - (void)onDecodeCompleted:(NSDictionary *)decodeData
@@ -212,7 +212,7 @@ NSString* const StringFromDecodeResult[] = {
 {
 	[self Log:@"onPinEntryDetected"];
 	[self Log:[NSString stringWithFormat:@"pinKey: %d", pinKey]];
-	[self writeJavascript:[NSString stringWithFormat:@"window.plugins.cswiper.onPinEntryDetected(%@)", StringFromPINKey[pinKey]]];
+	[self writeJavascript:[NSString stringWithFormat:@"window.plugins.cswiper.onPinEntryDetected('%@')", StringFromPINKey[pinKey]]];
 }
 
 - (void)onEPBDetected

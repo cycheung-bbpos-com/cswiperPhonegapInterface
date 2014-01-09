@@ -15,28 +15,22 @@
 @synthesize doLogging;
 
 NSString* const StringFromPINKey[] = {
-	@"LOCATION_1",
-    @"LOCATION_2",
-    @"LOCATION_3",
-	@"LOCATION_4",
-	@"LOCATION_5",
-	@"LOCATION_6",
-	@"LOCATION_7",
-	@"LOCATION_8",
-	@"LOCATION_9",
-	@"LOCATION_C",
-	@"LOCATION_0",
-	@"LOCATION_E"
+	@"KEY_PIN",
+    @"KEY_BACK",
+    @"KEY_CANCEL",
+	@"KEY_CLEAR",
+    @"KEY_ENTER",
+    @"KEY_ENTER_WITHOUT_PIN" //Added in 2.5.0
 };
 
 NSString* const StringFromDecodeResult[] = {
-	@"DECODE_SWIPE_FAIL",
-    @"DECODE_CRC_ERROR",
-    @"DECODE_COMM_ERROR",
-	@"DECODE_TRACK1_ERROR", //Deprectated
-    @"DECODE_TRACK2_ERROR", //Deprectated
-    @"DECODE_TRACK3_ERROR", //Deprectated
-    @"DECODE_UNKNOWN_ERROR"
+	@"CSwiperControllerDecodeResultSwipeFail",
+    @"CSwiperControllerDecodeResultCRCError",
+    @"CSwiperControllerDecodeResultCommError",
+	@"CSwiperControllerDecodeResultTrack1Error", //Deprecated
+    @"CSwiperControllerDecodeResultTrack2Error", //Deprecated
+    @"CSwiperControllerDecodeResultTrack3Error", //Deprecated
+    @"CSwiperControllerDecodeResultUnknownError"
 };
 
 - (CDVPlugin*)initWithWebView:(UIWebView *)theWebView

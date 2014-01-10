@@ -126,14 +126,11 @@ private CSwiperController cswiperController;
 				int input2 = args.getInt(1);
 				cswiperController.setMasterKey(input1, input2);
 				return true;
-			} else if (action.equals("cswiperController")) {
-				String input1 = args.getString(0);
-				String input2 = args.getString(1);
-				cswiperController.startCSwiper(input1, input2);
-				return true;
 			} else if (action.equals("getFirmwareVersion")) {
 				String fwVersion = cswiperController.getFirmwareVersion();
-				this.invokeJsFunc("onGetFirmwareVersionCompleted", String.format("'%s'", fwVersion));
+				if (fwVersion != null && fwVersion != "null") {
+					this.invokeJsFunc("onGetFirmwareVersionCompleted", String.format("'%s'", fwVersion));
+				}
 				return true;
 			}
 			

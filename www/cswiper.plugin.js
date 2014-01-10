@@ -235,9 +235,6 @@ CSwiperPlugin.prototype = {
 	},
 };
 
-if (!window.plugins) {
-    window.plugins = {};
-}
-if (!window.plugins.cswiper) {
-    window.plugins.cswiper = new CSwiperPlugin();
-}
+var cswiper =  new CSwiperPlugin();
+
+module.exports = cswiper;

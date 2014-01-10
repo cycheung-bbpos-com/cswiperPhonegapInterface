@@ -7,7 +7,7 @@
     <description>CSwiper Plugin</description>
     <license>MIT</license>
     <keywords>phonegap,cswiper</keywords>    
-    <js-module src="www/js/lib/cswiper.plugin.js" name="CSwiper">
+    <js-module src="www/cswiper.plugin.js" name="CSwiper">
         <clobbers target="window.plugins.cswiper" />
     </js-module> 
     <!-- android -->
